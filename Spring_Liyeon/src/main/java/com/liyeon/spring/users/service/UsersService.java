@@ -1,5 +1,7 @@
 package com.liyeon.spring.users.service;
 
-public interface UsersService {
+import com.liyeon.spring.users.dto.UsersDto;
 
+public interface UsersService {
+	public void addUser(UsersDto dto);
 }

@@ -1,5 +1,7 @@
 package com.liyeon.spring.users.dao;
 
-public interface UsersDao {
+import com.liyeon.spring.users.dto.UsersDto;
 
+public interface UsersDao {
+	public void insert(UsersDto dto);
 }
