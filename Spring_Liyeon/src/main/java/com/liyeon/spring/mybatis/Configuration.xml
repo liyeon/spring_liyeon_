@@ -3,5 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<!-- dto를 별칭으로 사용 할 수 있도록 별칭 등록  -->
+	<typeAliases>
+		<typeAlias type="com.liyeon.spring.users.dto.UsersDto" alias="usersDto"/>
+	</typeAliases>
+	<!-- mapper 목록 설정  -->
+	<mappers>
+	<mapper resource="com/gura/spring05/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/liyeon/spring/mybatis/UsersMapper.xml"/>
+	</mappers>
 </configuration>

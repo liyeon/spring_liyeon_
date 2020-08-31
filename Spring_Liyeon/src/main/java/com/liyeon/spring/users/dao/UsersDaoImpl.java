@@ -1,5 +1,12 @@
 package com.liyeon.spring.users.dao;
 
-public class UsersDaoImpl {
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class UsersDaoImpl implements UsersDao{
+	@Autowired
+	private SqlSession session;
+	
 }
