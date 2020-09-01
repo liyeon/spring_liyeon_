@@ -16,7 +16,7 @@ public class UsersController {
 	//회원가입 폼 요청처리
 	@RequestMapping("/users/signupform")
 	public String signupForm() {
-		//WEB-INF/views/users/signupform.jspforward 이동해서 응답한다.
+		//WEB-INF/views/users/signupform.js 페이지 forward 이동해서 응답한다.
 		return "users/signupform";
 	}
 	
