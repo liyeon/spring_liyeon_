@@ -3,7 +3,11 @@
 <mapper namespace="users">
 	<insert id="insert" parameterType="usersDto">
 		INSERT INTO users
-		(id, pwd, email, profile, regdate)
-		VALUES(#{id}, #{pwd}, #{email}, #{profile}, SYSTATE)
+		(id, pwd, email, regdate)
+		VALUES(#{id}, #{pwd}, #{email}, SYSDATE)
 	</insert>
+	<select id="isExist" parameterType="java.lang.String" resultType="string">
+		SELECT id FROM users
+		WHERE id = #{inputId}
+	</select>
 </mapper>

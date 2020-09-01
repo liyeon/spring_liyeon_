@@ -8,6 +8,9 @@
 <title>/views/users/signup.jsp</title>
 </head>
 <body>
-
+	<script>
+		alert("${param.id }님 가입을 축하드립니당!!!!");
+		location.href="loginform.do";
+	</script>
 </body>
 </html>

@@ -26,6 +26,6 @@
 </div>
 	<ul>
 		<li>목록쓰 </li>
-	</ul>
+	</ul>  
 </body>
 </html>
