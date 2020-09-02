@@ -106,5 +106,17 @@ public class UsersController {
 		mView.setViewName("users/info");
 		//web-inf/views/users/info.jsp
 		return mView;
-	}//getData
+	}//=====getData=====
+	
+	//회원 삭제/탈퇴 요청 처리
+	@RequestMapping("/users/private/delete")
+	public ModelAndView delete(HttpServletRequest request, ModelAndView mView) {
+		//서비스를 이용해서 사용자 정보를 삭제하고
+		service.deleteUser(request.getSession());
+		//view페이지로 froward 이동해서 응답
+		mView.setViewName("users/delete");
+		//인덱스 페이지로 리다이렉트 이동
+		//mView.setViewName("redirect:/home.do");
+		return mView;
+	}//=====delete=====
 }//========UsersController=======
