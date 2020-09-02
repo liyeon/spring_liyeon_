@@ -79,5 +79,55 @@
 	<!-- 
 		new SqlSessionTemplate(sessionFactory);
 	 -->
+	<!-- Spring Transaction Manager 설정 -->
+	<!-- 
+	txManger=new DataSourceTransactionManager();
+	txManger.setDataSource(dataSource); //property name은 setter메소드를 가리킴 ref는 생성자의 인자를 가르킴
+	 -->
+	<beans:bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
 	
+	<!-- @Transactional 어노테이션으로 트렌젝션을 관리 할 수 있도록 설정-->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.gura.spring05" />
+	
+	<!-- 어떤 객체를 만들 것인지 -->
+	<!-- MultiPart 폼 전송 처리를 위한 bean 설정  MultiPart 해결사 객체 -->
+	<beans:bean id="multipartResolver"
+	 class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- setter메소드 호출 -->
+		<beans:property name="maxUploadSize" value="10240000" /><!-- 10MB/ 0빼면 1MB, 1024는 1kb -->
+	</beans:bean>
+	
+	
+	<!-- 
+		bean의 이름을 이용해서 view 로 이동 할 수 있도록 설정
+		setOrder(0)는 0순위로 찾아가겠다는 의미
+		0순위로 찾아서 없으면 
+		views 폴더 안에서 jsp 페이지를 찾게 된다.
+		컨테이너에 있는걸 먼저 찾아보고 없으면 views폴더의 jsp파일을 찾는다.
+	-->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
+	
+	<!-- 어노테이션 기반으로 aop적용 가능하게 하기 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans:beans>
