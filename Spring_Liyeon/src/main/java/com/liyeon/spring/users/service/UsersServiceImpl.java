@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -89,8 +90,28 @@ public class UsersServiceImpl implements UsersService{
 
 	@Override
 	public void loginProcess(UsersDto dto, ModelAndView mView, HttpSession session) {
+		//입력한 정보가 유효한 정보인지 여부를 저장할 지역 변수
+		boolean isValid = false; // 초기값 false
+		//로그인 폼에 입력한 아이디를 이용하여 DB에서select 해봄, 존재하지않으면 null 리턴
+		UsersDto resultDto = dao.getData(dto.getId());
+		//아이디 값으로 가져온 데이터의 null 가능성
+		if(resultDto != null) {//아이디가 존재하는 경우(아이디 일치)
+			//DB에 저장된 암호화된 비밀번호를 읽어온다.
+			String encodedPwd=resultDto.getPwd();
+			//로그인 폼에 입력한 비밀번호
+			String inputPwd = dto.getPwd();
+			//BCrypt 클래스의 static메소드를 이용해서 일치 여부를 얻어낸다.
+			isValid = BCrypt.checkpw(inputPwd, encodedPwd);
+		}
 		
-		
+		if(isValid) {//만일 유효한 정보면
+			//로그인 처리를 한다.
+			session.setAttribute("id", dto.getId());
+			//view페이지에서 사용할 정보
+			mView.addObject("isSuccess", true);
+		}else {//아니면
+			mView.addObject("isSuccess", false);
+		}
 	}//=====loginProcess=====
 
 	@Override
