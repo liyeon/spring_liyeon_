@@ -97,4 +97,14 @@ public class UsersController {
 		return "redirect:/home.do";
 		//return "users/logout";
 	}//=====logout=====
+	
+	
+	//개인정보보기 요청 처리
+	@RequestMapping("/users/private/info")
+	public ModelAndView info(HttpServletRequest request, ModelAndView mView) {
+		service.getInfo(request.getSession(), mView);
+		mView.setViewName("users/info");
+		//web-inf/views/users/info.jsp
+		return mView;
+	}//getData
 }//========UsersController=======
