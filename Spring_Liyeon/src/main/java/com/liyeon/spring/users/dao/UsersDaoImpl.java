@@ -27,4 +27,27 @@ public class UsersDaoImpl implements UsersDao{
 		}
 	}//=======isExist=======
 	
+	//인자로 전달되는 id에 해당되는 사용자 정보를 리턴하는 메소드
+	@Override
+	public UsersDto getData(String id) {
+		 //result type이 usersDto, parameter type이 string
+		return session.selectOne("users.getData", id);
+	}//======getData=======
+
+	@Override
+	public void delete(String id) {
+		session.delete("users.delete", id);
+	}//=======delete=======
+
+	@Override
+	public void update(UsersDto dto) {
+		 session.update("users.update", dto);
+	}//=======update=======
+
+	@Override
+	public void updatePwd(UsersDto dto) {
+		//update문의 영향을 받은row의 갯수가 리턴된다.
+		 session.update("users.updatepwd", dto);
+	}//=======updatePwd=======
+	
 }//=========UsersDaoImpl============
