@@ -137,4 +137,19 @@ public class UsersController {
 		mView.setViewName("redirect:/users/private/info.do");
 		return mView;
 	}//====update====
+	
+	//비밀번호 수정 폼 요청처리
+	@RequestMapping("/users/private/pwd_updateform")
+	public ModelAndView pwdUpdateForm(ModelAndView mView) {
+		mView.setViewName("users/pwd_updateform");
+		return mView;
+	}//====pwdUpdateForm====
+	
+	//비밀번호 수정 반영 요청처리
+	@RequestMapping("/users/private/pwd_update")
+	public ModelAndView pwdUpdate(ModelAndView mView, UsersDto dto, HttpServletRequest request) {
+		service.updateUserPwd(request.getSession(), dto, mView);
+		mView.setViewName("users/pwd_update");
+		return mView;
+	}//====pwdUpdate====
 }//========UsersController=======
