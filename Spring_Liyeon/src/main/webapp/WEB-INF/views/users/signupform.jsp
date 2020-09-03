@@ -63,8 +63,9 @@ svg#profileImage {
 			});//success 종료
 		};//idChanged 종료
 		//비밀번호 입력란을 입력했을 때 호출되는 함수
-		
+		$scope.isPwdEqual=true;
 		$scope.pwdChanged=function(){
+			$scope.isPwdEqual = $scope.pwd==$scope.pwd2;
 			//비밀번호를 같게 입력 했는지 여부를 모델로 관리
 			$scope.myForm.pwd.$valid=$scope.pwd==$scope.pwd2;//같은지
 			$scope.myForm.pwd.$invalid=$scope.pwd!=$scope.pwd2;//다른지
@@ -142,7 +143,7 @@ svg#profileImage {
 				<div class="invalid-feedback">이메일 형식에 맞게 입력해주세요</div>
 				<div class="valid-feedback">이메일 형식에 맞게 입력하셨습니다.</div>
 			</div>
-			<button type="submit" ng-disabled="myForm.$invalid || !canUseId" class="btn btn-info">가입</button>
+			<button type="submit" ng-disabled="myForm.$invalid || !canUseId || !isPwdEqual" class="btn btn-info">가입</button>
 			<button type="reset" class="btn btn-danger"> 취소</button>
 		</form>
 	</div><!-- container 종료  -->
