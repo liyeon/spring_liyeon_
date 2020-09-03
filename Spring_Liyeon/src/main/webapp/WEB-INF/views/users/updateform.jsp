@@ -60,7 +60,7 @@ svg#profileImage {
 		</div>
 	
 		<!-- 프로필 이미지 업로드 폼 -->
-		<form id="profileForm" action="profile_upload.do" method="post" enctype="multipart/form-data">
+		<form id="profileForm" action="${pageContext.request.contextPath }/users/profile_upload.do" method="post" enctype="multipart/form-data">
 			<input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG, .gif, .GIF" />
 		</form>
 		

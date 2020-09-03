@@ -83,7 +83,7 @@ svg#profileImage {
 			</a>
 		</div>
 		<!-- 프로필을 업로드 하기 위한 폼 -->
-		<form id="profileForm" action="private/profile_upload.do" method="post" enctype="multipart/form-data">
+		<form id="profileForm" action="profile_upload.do" method="post" enctype="multipart/form-data">
 			<input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .JPG, .JPEG, .gif, .GIF" />
 		</form>
 		<!-- 회원가입 폼  -->

@@ -49,7 +49,7 @@ public class UsersController {
 	}//====signip====
 	
 	//ajax로 프로필 사진 업로드 요청 처리
-	@RequestMapping("/users/private/profile_upload")
+	@RequestMapping("/users/profile_upload")
 	@ResponseBody
 	public Map<String, Object> profileUpload(HttpServletRequest request,
 			@RequestParam MultipartFile image){
