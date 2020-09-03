@@ -2,6 +2,7 @@ package com.liyeon.spring.users.service;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,4 +174,14 @@ public class UsersServiceImpl implements UsersService{
 		//mView객체에 성공여부를 담는다.
 		mView.addObject("isSuccess", isSuccess);
 	}//=====updateUserPwd=====
+
+	@Override
+	public void getList(HttpServletRequest request, UsersDto dto) {
+		String id = (String) request.getSession().getAttribute("id");
+		if(id.equals("admin")) {
+			List<UsersDto> list = dao.getList(dto);
+			request.setAttribute("list", list);
+		}
+		
+	}//=====getList====
 }//=======UsersServiceImpl=======

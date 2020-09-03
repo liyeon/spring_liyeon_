@@ -42,4 +42,11 @@
  		FROM users
  		where id=#{id}
 	</select>
+	
+	<!-- 전체 회원 정보 가져오기 -->
+	<select id="getList" parameterType="usersDto" resultType="usersDto">
+		SELECT id, pwd, email, profile, 
+		TO_CHAR(regdate, 'YYYY-MM-DD HH24"시"MI"분"') AS regdate
+ 		FROM users
+	</select>
 </mapper>

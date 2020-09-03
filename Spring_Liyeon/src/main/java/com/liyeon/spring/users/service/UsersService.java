@@ -17,7 +17,11 @@ public interface UsersService {
 	
 	public void loginProcess(UsersDto dto, ModelAndView mView, HttpSession session);//로그인
 	public void getInfo(HttpSession session, ModelAndView mView);//회원정보
+	
+	public void getList(HttpServletRequest request, UsersDto dto); //전체 회원의 정보를 불러온다.
+	
 	public void deleteUser(HttpSession session);//회원 삭제
 	public void updateUser(HttpSession session, UsersDto dto);//회원정보 수정
 	public void updateUserPwd(HttpSession session, UsersDto dto, ModelAndView mView);//비밀번호 수정
+	
 }

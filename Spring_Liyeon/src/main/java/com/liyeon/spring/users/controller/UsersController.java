@@ -152,4 +152,13 @@ public class UsersController {
 		mView.setViewName("users/pwd_update");
 		return mView;
 	}//====pwdUpdate====
+	
+	//회원정보 리스트 요청처리
+	@RequestMapping("/users/private/admin")
+	public ModelAndView admin(ModelAndView mView, HttpServletRequest request, UsersDto dto) {
+		service.getList(request, dto);
+		mView.setViewName("users/admin");
+		
+		return mView;
+	}
 }//========UsersController=======

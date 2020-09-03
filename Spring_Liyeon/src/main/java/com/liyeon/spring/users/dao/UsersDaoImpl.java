@@ -1,5 +1,7 @@
 package com.liyeon.spring.users.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,5 +51,9 @@ public class UsersDaoImpl implements UsersDao{
 		//update문의 영향을 받은row의 갯수가 리턴된다.
 		 session.update("users.updatepwd", dto);
 	}//=======updatePwd=======
-	
+
+	@Override
+	public List<UsersDto> getList(UsersDto dto) {
+		return session.selectList("users.getList", dto);
+	}//======getList=======
 }//=========UsersDaoImpl============
