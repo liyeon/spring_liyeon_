@@ -119,4 +119,22 @@ public class UsersController {
 		//mView.setViewName("redirect:/home.do");
 		return mView;
 	}//=====delete=====
+	
+	//회원정보 수정폼 요청 처리
+	@RequestMapping("/users/private/updateform")
+	public ModelAndView updateForm(HttpServletRequest request, ModelAndView mView) {
+		service.getInfo(request.getSession(), mView);
+		mView.setViewName("users/updateform");
+		return mView;
+	}//====updateForm====
+	
+	//회원정보 수정 요청처리 
+	@RequestMapping("/users/private/update")
+	public ModelAndView update(HttpServletRequest request, UsersDto dto, ModelAndView mView) {
+		//업로드된 프로필 링크가 콘솔창에출력되게끔 
+		System.out.println("profile:"+ dto.getProfile());
+		service.updateUser(request.getSession(), dto);
+		mView.setViewName("redirect:/users/private/info.do");
+		return mView;
+	}//====update====
 }//========UsersController=======

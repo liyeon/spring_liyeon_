@@ -136,8 +136,11 @@ public class UsersServiceImpl implements UsersService{
 
 	@Override
 	public void updateUser(HttpSession session, UsersDto dto) {
-		
-		
+		//세션에저장된,로그인된 아이디를 읽어온다.
+		String id = (String)session.getAttribute("id");
+		//UsersDto에 담는다.
+		dto.setId(id);
+		dao.update(dto);
 	}//=====updateUser=====
 
 	@Override
